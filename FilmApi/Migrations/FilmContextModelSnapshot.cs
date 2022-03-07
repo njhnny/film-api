@@ -25,8 +25,8 @@ namespace FilmApi.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("Time")
-                        .HasColumnType("int");
+                    b.Property<string>("Time")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("FilmId");
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmApi.Migrations
 {
     [DbContext(typeof(FilmContext))]
-    [Migration("20220307015829_Initial")]
+    [Migration("20220307023136_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,8 @@ namespace FilmApi.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("Time")
-                        .HasColumnType("int");
+                    b.Property<string>("Time")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("FilmId");
 
