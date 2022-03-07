@@ -1,4 +1,4 @@
-namespace film_api.Controllers
+namespace film_api.Models
 {
   public class Film
   {
