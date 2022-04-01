@@ -23,13 +23,11 @@ namespace FilmApi
         {
 
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FilmApi", Version = "v1" });
-            });
+            
             services.AddDbContext<FilmContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
                 services.AddControllers();
+                services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,11 +36,16 @@ namespace FilmApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmApi v1"));
             }
 
             // app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmApi V1");
+        c.RoutePrefix = string.Empty;
+        //c.InjectStylesheet("/css/styles.css");
+      });
 
             app.UseRouting();
 
@@ -52,6 +55,7 @@ namespace FilmApi
             {
                 endpoints.MapControllers();
             });
+            app.UseStaticFiles();
         }
     }
 }
